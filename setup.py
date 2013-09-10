@@ -50,4 +50,5 @@ setup(
     install_requires=[
         'django-picklefield',
     ],
+    zip_safe=False
 )

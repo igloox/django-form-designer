@@ -37,10 +37,9 @@ class FormDesignerPlugin(CMSPluginBase):
             )
 
         if isinstance(response, HttpResponseRedirect):
-            raise HttpRedirectException(
-                response, 
-                "Redirect"
-                )
+            context['request'].formDesingerRedirect = response
+            response = {}
+
         return response
 
     def icon_src(self, instance):
