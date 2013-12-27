@@ -37,8 +37,12 @@ class FormDesignerPlugin(CMSPluginBase):
             )
 
         if isinstance(response, HttpResponseRedirect):
+            # If process_form returns a redirect, stick it in the request object
+            # for the response middleware to catch and act on.
+            # Return the context object, because although it's not displayed,
+            # the plugin render system will break if it doesn't get it.
             context['request'].formDesingerRedirect = response
-            response = {}
+            return context
 
         return response
 
